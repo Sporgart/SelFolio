@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en"  xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Личный кабинет</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+<header class="head">
+    <img th:src="@{/images/logo.png}" onclick="document.location='/'" alt="My Website Logo">
+    <nav>
+        <ul>
+            <li><a th:href="@{/project/new}">Создать проект</a></li>
+            <li><a th:href="@{/}">Главная</a></li>
+            <li><a th:href="@{/account}">Личный кабинет</a></li>
+            <li><a th:href="@{/logout}">Выход</a></li>
+        </ul>
+    </nav>
+</header>
+<main>
+    <h1>Добро пожаловать в личный кабинет</h1>
+    <h2>Мои проекты</h2>
+
+        <div class="project-item" th:each="project : ${projects}" th:value="${projects}">
+            <h3><a th:text="${project.getTitle()}" th:href="@{/project{id}(id=${project.getId()})}"></a> </h3>
+            <p th:text="${project.getDescription()}"></p>
+            <br>
+        </div>
+
+</main>
+<footer>
+    <p>&copy; 2023 My Website. Все права защищены.</p>
+</footer>
+</body>
+</html>

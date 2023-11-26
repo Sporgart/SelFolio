@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en"  xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Проект</title>
+  <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+<header class="head">
+  <img th:src="@{/images/logo.png}" onclick="document.location='/'"  alt="My Website Logo">
+  <nav>
+    <ul>
+      <li>
+
+        <span th:if="${contacts != null}">
+          <a th:text="'Контакты автора: ' + ${contacts}" th:href="'mailto:' + ${contacts}"></a>
+        </span>
+        <span th:if="${contacts == null}">
+          <a th:href="@{/project{id}/edit(id=${project.getId()})}">Редактировать</a>
+          <a th:href="@{/project{id}/delete(id=${project.getId()})}">Удалить проект</a>
+        </span>
+
+      </li>
+      <li><a th:href="@{/}">Главная</a></li>
+      <li><a th:href="@{/account}">Личный кабинет</a></li>
+      <li><a th:href="@{/logout}">Выход</a></li>
+    </ul>
+  </nav>
+</header>
+<main>
+  <span th:if="${project.getTitle() != null}">
+    <h1 th:text="${project.getTitle()}"></h1>
+    <h2 th:text="${project.getDescription()}"></h2>
+    <a th:href="@{/files{id}(id=${project.getId()})}">Просмотреть файлы проекта</a>
+    </h2>
+    <div>
+      <p th:text="${project.getText_project()}"> </p>
+    </div>
+
+  </span>
+  <span th:if="${project.getTitle() == null}">
+    <h1 th:text="Проект не найден"></h1>
+  </span>
+
+
+
+</main>
+<footer>
+  <p>&copy; 2023 My Website. Все права защищены.</p>
+</footer>
+</body>
+</html>

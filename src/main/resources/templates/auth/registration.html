@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8" >
+
+  <link th:href="@{/css/style.css}" rel="stylesheet" type="text/css">
+  <br>
+  <title>Регистрация</title>
+</head>
+<body>
+<header class="head">
+  <img th:src="@{/images/logo.png}"  alt="My Website Logo">
+  <nav>
+    <ul>
+      <li><a th:href="@{/static}">Главная</a></li>
+      <li><a th:href="@{/login}">Вход</a></li>
+      <li><a th:href="@{/registration}">Регистрация</a></li>
+    </ul>
+  </nav>
+</header>
+<main>
+  <h1>Регистрация</h1>
+  <form th:action="@{/registration}" th:method="POST" id="registrationForm" th:object="${appUser}">
+    <div>
+      <label for="username">Имя пользователя:</label>
+      <br>
+      <input type="text" th:field="*{username}" id="username" name="username" placeholder="Имя пользователя" required>
+    </div>
+    <div>
+      <label for="email">Электронная почта:</label>
+      <br>
+      <input type="email" th:field="*{email}" id="email" name="email" placeholder="Электронная почта" required>
+    </div>
+    <div>
+      <label for="password">Пароль:</label>
+      <br>
+      <input type="password" th:field="*{password}" id="password" name="password" placeholder="Пароль" required>
+    </div>
+    <div>
+      <label for="confirmPassword">Подтвердите пароль:</label>
+      <br>
+      <input type="password"  id="confirmPassword" name="confirmPassword" placeholder="Подтвердите пароль" required>
+    </div>
+    <button type="submit">Зарегистрироваться</button>
+  </form>
+</main>
+
+<footer>
+  <p>&copy; 2023 SelFolio. Все права защищены.</p>
+</footer>
+<script th:src="@{/js/regScript.js}" ></script>
+</body>
+</html>
+

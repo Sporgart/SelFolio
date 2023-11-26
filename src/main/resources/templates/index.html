@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link th:href="@{/css/style.css}"  rel="stylesheet" type="text/css">
+    <title>Selfolio</title>
+</head>
+<body>
+<header class="head">
+    <img th:src="@{/images/logo.png}" onclick="document.location='/'" alt="My Website Logo">
+    <nav>
+        <ul>
+            <li>
+                <form th:method="GET" th:action="@{/}">
+                    <input type="text" placeholder="Поиск" th:name="search" id="titleProject" onkeydown="if (event.keyCode == 13) { this.form.submit(); return false; }"/>
+                </form>
+
+            </li>
+            <li><a th:href="@{/}">Главная</a></li>
+            <li><a th:href="@{/account}">Личный кабинет</a></li>
+            <li><a th:href="@{/logout}">Выход</a></li>
+        </ul>
+    </nav>
+</header>
+<main>
+    <h1>Добро пожаловать сайт</h1>
+    <h2>Все доступные проекты:</h2>
+
+    <div class="project-item" th:each="project : ${projects}" th:value="${project}">
+        <h3><a th:text="${project.getTitle()}" th:href="@{/project{id}(id=${project.getId()})}"></a> </h3>
+        <p th:text="${project.getDescription()}"></p>
+        <br>
+    </div>
+
+    <div class="main-text">
+        <h2 class="sf">SelFolio</h2>
+        <p>Это многофункциональный сайт для создания и хранения персонального портфолио. На сайте пользователи могут создать свой профиль и загрузить свои работы и проекты, связанные с их профессиональной деятельностью.</p>
+        <p>SelFolio предоставляет удобный интерфейс для загрузки файлов и описания каждого проекта, а также позволяет настроить доступ к работам в зависимости от требований пользователя. Кроме того, на сайте есть функция поиска, которая поможет работодателям найти подходящего кандидата для их проектов.</p>
+        <p>Для удобства пользователя, на SelFolio доступен функционал сортировки работ по категориям, тегам и другим параметрам, а также возможность создания и редактирования портфолио в любое время.</p>
+        <p>SelFolio - это идеальное место для тех, кто хочет показать свои работы и проекты, получить обратную связь от профессионалов и расширить свой круг профессиональных контактов.</p>
+    </div>
+</main>
+<footer>
+    <p>&copy; 2023 SelFolio. Все права защищены.</p>
+</footer>
+</body>
+</html>
